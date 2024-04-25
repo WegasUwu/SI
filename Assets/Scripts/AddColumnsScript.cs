@@ -11,16 +11,19 @@ public class AddColumnsScript : MonoBehaviour
     public int Rows;
 
     void Create() {
-         Rows = Row.GetComponent<GridLayoutGroup>().constraintCount;
+        
     }
 
 
 
     public void Duplicate()
     {
-        while(Rows != 0)
+        Row.GetComponent<GridLayoutGroup>().constraintCount += 1;
+        Rows = Row.GetComponent<GridLayoutGroup>().constraintCount + 1;
+        while (Rows != 0)
         {
-            GameObject duplicate = Instantiate(Button);
+            GameObject duplicate = Instantiate(Button, Row.transform);
+            Rows -= 1;
         }
         
     }
